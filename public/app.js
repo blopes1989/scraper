@@ -8,8 +8,8 @@ $.getJSON("/articles", function(data) {
         "<div class='card cardOuter'>" +
         "<div class='row'>" +
         "<div class='card-body col-8'>" +
-        "<h5 class='card-title'> </h5>" +
-        "<p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>" +
+        "<h5 class='card-title'> </h5>" + data[i].title +
+        "<p class='card-text'>" + data[i].body + data[i].link +"</p>" +
         "</div>"+
         "<div class='card cardInner'>"+
         "<h5 class='card-header'>Leave a comment!</h5>"+
@@ -27,6 +27,7 @@ $.getJSON("/articles", function(data) {
   
 //   // When you click the submit button
    $(document).on("click", "#submit", function() {
+       event.preventDefault();
 //     // Grab the id associated with the article from the submit button
      var thisId = $(this).attr("data-id");
   
