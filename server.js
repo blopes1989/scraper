@@ -27,12 +27,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
-
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_6mczt65q:dq26gnl38lbmqd3tk3eb8rtvn0@ds227853.mlab.com:27853/heroku_6mczt65q"
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 // mongoose.connect("mongodb://localhost/scraper", { useNewUrlParser: true });
 // Routes
