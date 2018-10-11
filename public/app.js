@@ -1,3 +1,4 @@
+function webScrape () {
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
 
@@ -9,12 +10,12 @@ $.getJSON("/articles", function(data) {
         "<div class='row'>" +
         "<div class='card-body col-8'>" +
         "<h5 class='card-title'> </h5>" + data[i].title +
-        "<p class='card-text'>" + data[i].body + data[i].link +"</p>" +
+        "<p class='card-text'>" + data[i].body + "<br>" + data[i].link +"</p>" +
         "</div>"+
         "<div class='card cardInner'>"+
-        "<h5 class='card-header'>Leave a comment!</h5>"+
+        "<h5 class='card-header'id= 'bodyinput'>Leave a comment!</h5>"+
         "<div class='card-body col'>"+
-        "<input type='text' class='form-control' placeholder='First name'>"+
+        "<input type='text' class='form-control' id= 'notes' placeholder='Comment Here'>"+
         "<a href='#' class='btn btn-primary id= 'submit'>Post</a>"+
         "</div>"+
         "</div>"+
@@ -24,6 +25,7 @@ $.getJSON("/articles", function(data) {
       );
     }
   });
+}
   
 //   // When you click the submit button
    $(document).on("click", "#submit", function() {
@@ -54,4 +56,14 @@ $.getJSON("/articles", function(data) {
     $("#titleinput").val("");
     $("#bodyinput").val("");
    });
+
+   $(document).on("click", "#scrape", function() {
+
+    $.get("/scrape", function(data) {
+      console.log(data);
+    }).then(function() {
+     webScrape()
+    }).catch(err => console.log(err));
+
+  })
   
